@@ -1,0 +1,76 @@
+.search-page {
+  padding: 2rem;
+  background-color: #f4f4f4;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.search-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-form label {
+  margin-bottom: 0.5rem;
+}
+
+.search-form input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.search-form button {
+  padding: 0.75rem;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+  background-color: #b40710;
+}
+
+.error-message {
+  color: red;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.search-results {
+  margin-top: 2rem;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.movie-card {
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.movie-poster {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.movie-info {
+  margin-top: 1rem;
+}
