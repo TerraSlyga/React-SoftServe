@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import "./Header.css"; // (опціонально) стилі
 import { useEffect } from "react";
+import "./Header.css"; // (опціонально) стилі
 
 export default function Header() {
   const isLoggedIn = false;
@@ -88,7 +88,7 @@ export default function Header() {
       <div className="header__inner">
         <Link to="/" className="header__logo">
           <img className="header__icon" src="src/assets/icon.svg" alt="icon"/>
-          <div className="header__title">Кіноафіша</div>
+          <h1 className="header__title">Кіноафіша</h1>
         </Link>
 
         <nav className="header__nav">
