@@ -1,0 +1,39 @@
+.footer {
+  background-color: #1e1e1e;
+  color: #aaa;
+  padding: 2rem 0;
+  margin-top: auto;
+}
+
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.footer__logo {
+  color: #fff;
+  margin: 0;
+}
+
+.footer__text {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer__link {
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__link:hover {
+  color: #fff;
+}
