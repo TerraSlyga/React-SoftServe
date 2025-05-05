@@ -56,3 +56,27 @@
 .footer__item {
   padding-top: 0.5rem;
 }
+
+.footer__items {
+  padding: 0;
+}
+
+@media (max-width: 480px) {
+  .footer__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer__inner {
+    display: block;
+    text-align: center;
+
+  }
+  .footer__items {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+
+  }
+}
