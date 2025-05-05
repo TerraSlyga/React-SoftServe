@@ -51,26 +51,3 @@
 .search-results {
   margin-top: 2rem;
 }
-
-.movie-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.movie-card {
-  width: 200px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.movie-poster {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.movie-info {
-  margin-top: 1rem;
-}

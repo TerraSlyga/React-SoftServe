@@ -1,44 +1,71 @@
 .movie-card {
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  max-width: 200px;
+  height: 100%;
+  width: 270px;
 }
 
-.movie-card__poster {
+/* Постер без картинки */
+.movie-card__poster-placeholder {
+  background-color: #ccc; /* Світлий фон на випадок відсутності картинки */
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  height: 350px;
   width: 100%;
-  height: auto;
 }
 
 .movie-card__info {
-  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
 }
 
 .movie-card__title {
-  font-size: 1.1rem;
-  margin: 0.5rem 0 0.2rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .movie-card__rating {
-  color: #e50914;
-  font-weight: bold;
-  margin-bottom: 0.2rem;
+  color: #d6d602;
+  margin-bottom: 0.5rem;
 }
 
 .movie-card__desc {
-  font-size: 0.875rem;
-  color: #555;
+  font-size: 1.2rem;
+  margin-bottom: 5rem;
+  flex-grow: 1;
 }
 
+/* Кнопка */
 .movie-card__button {
-  display: inline-block;
-  margin-top: 0.5rem;
-  background: #e50914;
-  color: #fff;
-  padding: 0.4rem 0.8rem;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   text-decoration: none;
-  border-radius: 4px;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.movie-card__button:hover {
+  background-color: #c10d17;
+}
+
+@media (max-width: 480px) {
+  .movie-card {
+    width: 180px;
+  }
+
+  .movie-card__poster-placeholder {
+    height: 270px;
+  }
 }
