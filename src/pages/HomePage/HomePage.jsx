@@ -5,6 +5,7 @@ import movieService from "../../services/movieService"; // для API
 import "/src/pages/HomePage/HomePage.css";
 import Slider from "../../components/Slider/Slider"; // Імпорт компонента Slider
 
+
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
 

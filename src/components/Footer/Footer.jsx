@@ -6,6 +6,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__left">
+
           <Link to="/" className="footer__logo">
             <img className="footer__icon" src="src/assets/icon.svg" alt="icon"/>
             <h3 className="footer__title">Кіноафіша</h3>
