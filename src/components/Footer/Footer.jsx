@@ -6,25 +6,39 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__left">
-          <h3 className="footer__logo">🎬 Кіноафіша</h3>
+
+          <Link to="/" className="footer__logo">
+            <img className="footer__icon" src="src/assets/icon.svg" alt="icon"/>
+            <h3 className="footer__title">Кіноафіша</h3>
+          </Link>
           <p className="footer__text">
             © {new Date().getFullYear()} Кіноафіша. Усі права захищено.
           </p>
         </div>
 
         <div className="footer__links">
-          <Link to="/" className="footer__link">
-            Головна
-          </Link>
-          <Link to="/search" className="footer__link">
-            Пошук
-          </Link>
-          <Link to="/favorites" className="footer__link">
-            Обрані
-          </Link>
-          <Link to="/sessions" className="footer__link">
-            Сеанси
-          </Link>
+          <ul className="footer__items">
+            <li className="footer__item">
+            <Link to="/" className="footer__link">
+              Головна
+            </Link>
+            </li>
+            <li className="footer__item">
+            <Link to="/search" className="footer__link">
+              Пошук
+            </Link>
+            </li>
+            <li className="footer__item">
+            <Link to="/favorites" className="footer__link">
+              Обрані
+            </Link>
+            </li>
+            <li className="footer__item">
+            <Link to="/sessions" className="footer__link">
+              Сеанси
+            </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>

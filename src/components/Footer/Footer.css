@@ -1,7 +1,7 @@
 .footer {
   background-color: #1e1e1e;
   color: #aaa;
-  padding: 2rem 0;
+  padding: 2rem;
   margin-top: auto;
 }
 
@@ -12,9 +12,20 @@
   flex-wrap: wrap;
 }
 
-.footer__logo {
-  color: #fff;
+.footer__items {
+  list-style-type: none;
   margin: 0;
+}
+
+.footer__logo {
+  display: flex;
+  text-decoration: none;
+
+}
+
+.footer__title {
+  color: #ccc;
+  padding-left: 1rem;
 }
 
 .footer__text {
@@ -36,4 +47,12 @@
 
 .footer__link:hover {
   color: #fff;
+}
+
+.footer__text {
+  padding-top: 1rem;
+}
+
+.footer__item {
+  padding-top: 0.5rem;
 }
