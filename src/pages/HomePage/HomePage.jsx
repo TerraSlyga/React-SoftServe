@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import movieService from "../../services/movieService"; // для API
 import "/src/pages/HomePage/HomePage.css";
+import Slider from "../../components/Slider/Slider"; // Імпорт компонента Slider
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -120,13 +121,14 @@ export default function HomePage() {
 
     return (
         <main className="homepage">
-            <section className="homepage__banner">
+            <Slider />
+            {/* <section className="homepage__banner">
                 <img
                     src="/src/assets/minecraft-banner.jpeg"
                     alt="Головний банер"
                     className="homepage__banner-image"
                 />
-            </section>
+            </section> */}
 
             <section className="homepage__section">
                 <h2 className="homepage__title">Зараз у кіно</h2>

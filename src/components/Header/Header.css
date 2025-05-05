@@ -36,6 +36,10 @@
   gap: 1rem;
 }
 
+.header__logo:hover {
+    color: #fff;
+}
+
 .header__link {
   color: #ccc;
   text-decoration: none;
@@ -172,5 +176,8 @@
 @media (max-width: 576px) {
   .header {
     padding: 1rem 1rem;
+  }
+  .header__burger {
+    right: 35px;
   }
 }
