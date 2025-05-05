@@ -122,13 +122,6 @@ export default function HomePage() {
     return (
         <main className="homepage">
             <Slider />
-            {/* <section className="homepage__banner">
-                <img
-                    src="/src/assets/minecraft-banner.jpeg"
-                    alt="Головний банер"
-                    className="homepage__banner-image"
-                />
-            </section> */}
 
             <section className="homepage__section">
                 <h2 className="homepage__title">Зараз у кіно</h2>
