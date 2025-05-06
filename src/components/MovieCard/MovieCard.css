@@ -8,7 +8,7 @@
 
 /* Постер без картинки */
 .movie-card__poster-placeholder {
-  background-color: #ccc; /* Світлий фон на випадок відсутності картинки */
+  background-color: #ccc;
   border-radius: 8px;
   background-size: cover;
   background-position: center;
@@ -35,8 +35,15 @@
 
 .movie-card__desc {
   font-size: 1.2rem;
-  margin-bottom: 5rem;
+  line-height: 1.5;
+  margin-bottom: 4.5rem;
   flex-grow: 1;
+
+  /* Обмеження до 5 рядків */
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Кнопка */
@@ -51,7 +58,7 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
   text-decoration: none;
   position: absolute;
-  bottom: 1rem;
+  bottom: 0.5rem;
   left: 50%;
   transform: translateX(-50%);
 }
