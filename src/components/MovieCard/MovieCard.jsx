@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import "./MovieCard.css";
+
 
 export default function MovieCard({ movie, children }) {
   return (

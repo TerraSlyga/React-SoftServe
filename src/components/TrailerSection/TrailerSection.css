@@ -1,0 +1,49 @@
+.trailer-section {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #ffcc00;
+}
+
+.trailer-container {
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Додаємо адаптивність для різних розмірів екрану */
+@media (max-width: 1024px) {
+  .trailer-section {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .trailer-section {
+    padding: 1.25rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .trailer-section {
+    padding: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+}
