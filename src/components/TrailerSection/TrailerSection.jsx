@@ -3,7 +3,7 @@ import "./TrailerSection.css";
 const TrailerSection = ({ trailerId }) => {
   return (
     <div className="trailer-section">
-      <h2 className="section-title">Trailer and screenshots</h2>
+      <h2 className="section-title">Трейлер</h2>
       <div className="trailer-container">
         <iframe
           title="Трейлер"

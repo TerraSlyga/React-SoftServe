@@ -5,21 +5,25 @@ const MovieInfo = ({ movie }) => {
     <div className="movie-info">
       <div className="movie-info-item">
         <span className="info-label">Рік виходу:</span>
-        <span className="info-value">{movie.year}</span>
+        <span className="info-value">
+          {new Date(movie.releaseDate).getFullYear()}
+        </span>
       </div>
 
       <div className="movie-info-item">
         <span className="info-label">Жанр:</span>
-        <span className="info-value">{movie.genre}</span>
+        <span className="info-value">
+          {movie.genres.map((g) => g.genre).join(", ")}
+        </span>
       </div>
 
-      <div className="movie-info-item">
+      {/* <div className="movie-info-item">
         <span className="info-label">Режисер:</span>
         <span className="info-value">{movie.director}</span>
-      </div>
+      </div> */}
 
       <div className="movie-info-item">
-        <span className="info-label">Рейтинг поки що:</span>
+        <span className="info-label">Рейтинг:</span>
         <span className="info-value">{movie.rating} / 10</span>
       </div>
 

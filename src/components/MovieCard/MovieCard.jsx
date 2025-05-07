@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import "./MovieCard.css";
 
-
 export default function MovieCard({ movie, children }) {
   return (
     <div className="homepage__grid-item">
       <div className="movie-card">
         <div
           className="movie-card__poster-placeholder"
-          style={{ backgroundImage: `url(${movie.poster})` }}
+          style={{ backgroundImage: `url(${movie.posterPath})` }}
         />
         <div className="movie-card__info">
           <h3 className="movie-card__title">{movie.title}</h3>

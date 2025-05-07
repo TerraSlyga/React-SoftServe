@@ -17,8 +17,8 @@ const Slider = ({ maxSlides = 5 }) => {
         const limitedMovies = moviesData.slice(0, maxSlides);
         // Обробляємо отримані дані, щоб створити масив для слайдера
         const formattedImages = limitedMovies.map((movie) => ({
-          srcfragment: movie.firstFragment,
-          srcposter: movie.poster,
+          srcfragment: movie.firstScreenshot.url,
+          srcposter: movie.posterPath,
           alt: movie.title,
         }));
         setSliderImages(formattedImages);
