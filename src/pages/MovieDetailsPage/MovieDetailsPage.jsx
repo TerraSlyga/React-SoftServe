@@ -1,22 +1,56 @@
+"use client";
+
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import movieService from "../../services/movieService"; // Реалізувати запит до API для фільмів
+import movieService from "../../services/movieService";
+import MovieHeader from "../../components/MovieHeader/MovieHeader";
+import MovieInfo from "../../components/MovieInfo/MovieInfo";
+import CastSection from "../../components/CastSection/CastSection";
+import TrailerSection from "../../components/TrailerSection/TrailerSection";
+import ScreenshotsSection from "../../components/ScreenshotsSection/ScreenshotsSection";
+import BuyTicketButton from "../../components/BuyTicketButton/BuyTicketButton";
+import FavoriteButton from "../../components/FavoriteButton/FavoriteButton";
+import { mockMovie } from "../../mocks/movieMock"; // Імпортуємо мок-дані
 import "./MovieDetailsPage.css";
 
+// Тимчасовий прапорець для використання мок-даних
+const USE_MOCK_DATA = true;
+
 export default function MovieDetailsPage() {
-  const { id } = useParams(); // Отримуємо id фільму з URL
+  const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Встановлюємо початковий стан
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        // Замість mock, тут буде реальний запит
-        const movieData = await movieService.getMovieById(id);
-        setMovie(movieData);
+        if (USE_MOCK_DATA) {
+          // Використовуємо мок-дані замість API-запиту
+          setTimeout(() => {
+            setMovie(mockMovie);
+            setLoading(false);
+          }, 500); // Невелика затримка для імітації запиту
+        } else {
+          // Реальний API-запит
+          const movieData = await movieService.getMovieById(id);
+          setMovie(movieData);
+          setLoading(false);
+        }
       } catch (error) {
         console.error("Помилка при завантаженні фільму:", error);
-      } finally {
         setLoading(false);
       }
     };
@@ -24,53 +58,57 @@ export default function MovieDetailsPage() {
     fetchMovie();
   }, [id]);
 
-  if (loading) return <div>Завантаження...</div>;
+  if (loading) return <div className="loading-container">Завантаження...</div>;
 
-  if (!movie) return <div>Фільм не знайдено.</div>;
+  if (!movie) return <div className="error-container">Фільм не знайдено.</div>;
 
   return (
-    <div className="movie-details">
-      <div className="movie-details__poster">
-        <img src={movie.poster} alt={movie.title} />
-      </div>
+    <div className="movie-details-container">
+      <div className="movie-details-content">
+        <div className="movie-details-wrapper">
+          <MovieHeader
+            title={movie.title}
+            year={movie.year}
+            poster={movie.poster}
+            description={movie.description}
+          />
 
-      <div className="movie-details__info">
-        <h1>
-          {movie.title} ({movie.year})
-        </h1>
-        <p>
-          <strong>Жанр:</strong> {movie.genre}
-        </p>
-        <p>
-          <strong>Рейтинг:</strong> ⭐ {movie.rating}
-        </p>
-        <p>
-          <strong>Опис:</strong> {movie.description}
-        </p>
+          <MovieInfo movie={movie} />
 
-        <h3>Актори:</h3>
-        <ul>
-          {movie.actors.map((actor, index) => (
-            <li key={index}>{actor}</li>
-          ))}
-        </ul>
+          <div className="movie-actions">
+            <FavoriteButton movieId={movie.id} />
+          </div>
 
-        <div className="movie-details__trailer">
-          <h3>Трейлер:</h3>
-          <iframe
-            title="Трейлер"
-            width="100%"
-            height="400"
-            src={`https://www.youtube.com/embed/${movie.trailerId}`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+          <div className="movie-details-sections">
+            {isMobile ? (
+              // Мобільний порядок: трейлер і скріншоти, потім актори
+              <>
+                <div className="movie-details-section">
+                  <TrailerSection trailerId={movie.trailerId} />
+                </div>
+                <div className="movie-details-section">
+                  <ScreenshotsSection screenshots={movie.screenshots || []} />
+                </div>
+                <div className="movie-details-section">
+                  <CastSection actors={movie.actors} />
+                </div>
+              </>
+            ) : (
+              // Десктопний порядок: актори зліва, трейлер і скріншоти справа
+              <>
+                <div className="movie-details-left-column">
+                  <CastSection actors={movie.actors} />
+                </div>
+                <div className="movie-details-right-column">
+                  <TrailerSection trailerId={movie.trailerId} />
+                  <ScreenshotsSection screenshots={movie.screenshots || []} />
+                </div>
+              </>
+            )}
+          </div>
+
+          <BuyTicketButton />
         </div>
-
-        <button className="movie-details__favorite-button">
-          Додати до Обраних
-        </button>
       </div>
     </div>
   );

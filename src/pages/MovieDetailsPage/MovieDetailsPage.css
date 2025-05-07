@@ -1,57 +1,127 @@
-.movie-details {
+.movie-details-container {
+  background-color: #1a1a1a;
+  color: white;
+  min-height: 100vh;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.movie-details-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.movie-details-wrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
-  background-color: #f4f4f4;
 }
 
-.movie-details__poster img {
-  width: 300px;
-  height: auto;
-  border-radius: 8px;
+.movie-details-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.movie-details__info {
-  text-align: center;
-  margin-top: 1.5rem;
+.movie-details-section {
+  width: 100%;
 }
 
-.movie-details__info h1 {
-  font-size: 2rem;
-  margin: 1rem 0;
-}
-
-.movie-details__info p {
-  font-size: 1rem;
-  margin: 0.5rem 0;
-}
-
-.movie-details__info ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.movie-details__info ul li {
-  font-size: 1rem;
-  margin: 0.2rem 0;
-}
-
-.movie-details__trailer {
-  margin-top: 1.5rem;
-}
-
-.movie-details__favorite-button {
-  background: #e50914;
+.loading-container,
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  font-size: 1.5rem;
   color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 1rem;
-  transition: background-color 0.3s;
 }
 
-.movie-details__favorite-button:hover {
-  background-color: #b40710;
+.movie-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+/* Responsive layout */
+@media (min-width: 768px) {
+  .movie-details-sections {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.5rem; /* Зменшено відступ між колонками */
+    justify-content: space-between; /* Важливо для правильного вирівнювання */
+  }
+
+  .movie-details-left-column {
+    flex: 0 0 calc(30% - 0.75rem); /* Віднімаємо половину gap */
+    max-width: calc(30% - 0.75rem);
+    box-sizing: border-box;
+  }
+
+  .movie-details-right-column {
+    flex: 0 0 calc(70% - 0.75rem); /* Віднімаємо половину gap */
+    max-width: calc(70% - 0.75rem);
+    box-sizing: border-box;
+  }
+}
+
+/* Додаємо проміжний брейкпоінт для екранів між 768px і 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .movie-details-content {
+    padding: 0 2rem;
+  }
+
+  .movie-details-sections {
+    gap: 1.25rem; /* Ще менший відступ для середніх екранів */
+  }
+
+  .movie-details-left-column {
+    flex: 0 0 calc(35% - 0.625rem); /* Віднімаємо половину gap */
+    max-width: calc(35% - 0.625rem);
+  }
+
+  .movie-details-right-column {
+    flex: 0 0 calc(65% - 0.625rem); /* Віднімаємо половину gap */
+    max-width: calc(65% - 0.625rem);
+  }
+}
+
+/* Додаємо брейкпоінт для великих екранів */
+@media (min-width: 1025px) {
+  .movie-details-content {
+    padding: 0 2rem;
+  }
+
+  .movie-details-sections {
+    gap: 2rem; /* Повертаємо більший відступ для великих екранів */
+  }
+
+  .movie-details-left-column {
+    flex: 0 0 calc(30% - 1rem); /* Віднімаємо половину gap */
+    max-width: calc(30% - 1rem);
+  }
+
+  .movie-details-right-column {
+    flex: 0 0 calc(70% - 1rem); /* Віднімаємо половину gap */
+    max-width: calc(70% - 1rem);
+  }
+}
+
+/* Додаємо відступи для мобільних пристроїв */
+@media (max-width: 767px) {
+  .movie-details-content {
+    padding: 0 1.5rem;
+  }
+
+  .movie-details-section {
+    margin-bottom: 1.5rem;
+  }
 }
