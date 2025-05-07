@@ -1,26 +1,22 @@
 import { Link } from "react-router-dom";
 import "./MovieCard.css";
 
-const MovieCard = ({ movie }) => {
+
+export default function MovieCard({ movie, children }) {
   return (
-    <Link to={`/movies/${movie.id}`} className="movie-card">
-      <div className="movie-card-poster">
-        <img
-          src={movie.poster || "/placeholder.svg"}
-          alt={movie.title}
-          className="movie-poster-img"
+    <div className="homepage__grid-item">
+      <div className="movie-card">
+        <div
+          className="movie-card__poster-placeholder"
+          style={{ backgroundImage: `url(${movie.poster})` }}
         />
-        <div className="movie-card-rating">
-          <span className="rating-star">★</span>
-          <span className="rating-value">{movie.rating}</span>
+        <div className="movie-card__info">
+          <h3 className="movie-card__title">{movie.title}</h3>
+          <p className="movie-card__rating">★ {movie.rating}/10</p>
+          <p className="movie-card__desc">{movie.description}</p>
+          <div className="movie-card__button-container">{children}</div>
         </div>
       </div>
-      <div className="movie-card-info">
-        <h3 className="movie-card-title">{movie.title}</h3>
-        <p className="movie-card-genre">{movie.genre}</p>
-      </div>
-    </Link>
+    </div>
   );
-};
-
-export default MovieCard;
+}
