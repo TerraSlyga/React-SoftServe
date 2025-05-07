@@ -14,7 +14,7 @@ import { mockMovie } from "../../mocks/movieMock"; // Імпортуємо мо�
 import "./MovieDetailsPage.css";
 
 // Тимчасовий прапорець для використання мок-даних
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = false;
 
 export default function MovieDetailsPage() {
   const { id } = useParams();
@@ -42,7 +42,7 @@ export default function MovieDetailsPage() {
           setTimeout(() => {
             setMovie(mockMovie);
             setLoading(false);
-          }, 500); // Невелика затримка для імітації запиту
+          }, 0); // Невелика затримка для імітації запиту
         } else {
           // Реальний API-запит
           const movieData = await movieService.getMovieById(id);
@@ -68,8 +68,8 @@ export default function MovieDetailsPage() {
         <div className="movie-details-wrapper">
           <MovieHeader
             title={movie.title}
-            year={movie.year}
-            poster={movie.poster}
+            year={new Date(movie.releaseDate).getFullYear()}
+            poster={movie.posterPath}
             description={movie.description}
           />
 
