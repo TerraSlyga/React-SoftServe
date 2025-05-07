@@ -1,35 +1,77 @@
 import React, { useState, useEffect } from "react";
-import "./Slider.css"; // Додайте стилі тут
+import "./Slider.css"; // Переконайтеся, що шлях до CSS файлу правильний
+import movieService from "../../services/movieService"; // Припустимо, що movieService знаходиться в цьому файлі
 
-const images = [
-  { src: "/src/assets/minecraft-banner.jpeg", alt: "Зображення 1" },
-  { src: "/src/assets/pole_leto_nebo_121724_1920x1080.jpg", alt: "Зображення 2" },
-  { src: "/src/assets/zabavnyy_leto_sobaka_schenok_trava_72565_1920x1080.jpg", alt: "Зображення 3" }
-];
-
-const Slider = () => {
+const Slider = ({ maxSlides = 5 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [sliderImages, setSliderImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000);
+    const fetchFragments = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const moviesData = await movieService.getAllFragments();
+        const limitedMovies = moviesData.slice(0, maxSlides);
+        // Обробляємо отримані дані, щоб створити масив для слайдера
+        const formattedImages = limitedMovies.map((movie) => ({
+          src: movie.firstFragment,
+          alt: movie.title,
+        }));
+        setSliderImages(formattedImages);
+      } catch (err) {
+        setError(err.message);
+        console.error("Помилка при обробці даних для слайдера:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    return () => clearInterval(interval);
+    fetchFragments();
   }, []);
+
+  useEffect(() => {
+    if (sliderImages.length > 0) {
+      const interval = setInterval(() => {
+        setActiveIndex((prevIndex) => (prevIndex + 1) % sliderImages.length);
+      }, 5000);
+
+      return () => clearInterval(interval);
+    }
+  }, [sliderImages]);
+
+  if (loading) {
+    return <div>Завантаження слайдів...</div>;
+  }
+
+  if (error) {
+    return <div>Помилка завантаження слайдів: {error}</div>;
+  }
+
+  if (!sliderImages || sliderImages.length === 0) {
+    return <div>Немає доступних слайдів.</div>;
+  }
 
   return (
     <div className="slider">
       <div className="slide__container">
-        <img src={images[activeIndex].src} alt={images[activeIndex].alt} className="slide-active" />
+        <img
+          src={sliderImages[activeIndex]?.src}
+          alt={sliderImages[activeIndex]?.alt || "Зображення слайду"}
+          className="slide-active"
+        />
       </div>
       <div className="thumbnail__container">
-        {images.map((image, index) => (
+        {sliderImages.map((image, index) => (
           <img
             key={index}
             src={image.src}
             alt={image.alt}
-            className={`thumbnail ${index === activeIndex ? "active" : "inactive"}`}
+            className={`thumbnail ${
+              index === activeIndex ? "active" : "inactive"
+            }`}
             onClick={() => setActiveIndex(index)}
           />
         ))}
