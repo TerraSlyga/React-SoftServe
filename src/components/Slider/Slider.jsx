@@ -17,7 +17,8 @@ const Slider = ({ maxSlides = 5 }) => {
         const limitedMovies = moviesData.slice(0, maxSlides);
         // Обробляємо отримані дані, щоб створити масив для слайдера
         const formattedImages = limitedMovies.map((movie) => ({
-          src: movie.firstFragment,
+          srcfragment: movie.firstFragment,
+          srcposter: movie.poster,
           alt: movie.title,
         }));
         setSliderImages(formattedImages);
@@ -58,7 +59,7 @@ const Slider = ({ maxSlides = 5 }) => {
     <div className="slider">
       <div className="slide__container">
         <img
-          src={sliderImages[activeIndex]?.src}
+          src={sliderImages[activeIndex]?.srcfragment}
           alt={sliderImages[activeIndex]?.alt || "Зображення слайду"}
           className="slide-active"
         />
@@ -67,7 +68,7 @@ const Slider = ({ maxSlides = 5 }) => {
         {sliderImages.map((image, index) => (
           <img
             key={index}
-            src={image.src}
+            src={image.srcposter}
             alt={image.alt}
             className={`thumbnail ${
               index === activeIndex ? "active" : "inactive"
