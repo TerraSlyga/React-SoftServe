@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./AdminDashboardPage.css";
 
 export default function AdminDashboardPage() {
   return (
