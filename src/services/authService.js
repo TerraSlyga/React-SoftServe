@@ -1,4 +1,4 @@
-const API = "/api/auth";
+const API = "http://localhost:8080/api/auth";
 
 const login = async (credentials) => {
   const response = await fetch(`${API}/login`, {
@@ -9,7 +9,7 @@ const login = async (credentials) => {
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.message || "Login failed");
+    throw new Error(error.message || "Неправильний логін або пароль");
   }
 
   return await response.json();

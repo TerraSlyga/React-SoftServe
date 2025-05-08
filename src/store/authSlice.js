@@ -6,9 +6,12 @@ export const loginUser = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const data = await authService.login(credentials);
-      return data;
+      return {
+        token: data.token, // Токен
+        user: data.user, //Юзер
+      };
     } catch (err) {
-      return thunkAPI.rejectWithValue("Невірна пошта або пароль");
+      return thunkAPI.rejectWithValue(err.message || "Помилка входу");
     }
   }
 );
@@ -16,16 +19,25 @@ export const loginUser = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: null,
+    user: localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : null,
     token: localStorage.getItem("token") || null,
     loading: false,
     error: null,
+    isLoggedIn: !!localStorage.getItem("token"),
+    role: localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user")).role
+      : null, // Витягуємо роль
   },
   reducers: {
     logout(state) {
       state.user = null;
       state.token = null;
+      state.isLoggedIn = false;
+      state.role = null; // Скидаємо роль при логауті
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
     },
   },
   extraReducers: (builder) => {
@@ -35,13 +47,19 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
+        const { token, user } = action.payload;
         state.loading = false;
-        state.token = action.payload.token;
-        localStorage.setItem("token", action.payload.token);
+        state.token = token;
+        state.user = user;
+        state.isLoggedIn = true;
+        state.role = user.role; // Отримуємо роль з user.role
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user)); // Зберігаємо user як JSON-рядок
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload || "Помилка входу";
       });
   },
 });
