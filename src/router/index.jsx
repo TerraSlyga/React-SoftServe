@@ -7,6 +7,7 @@ import SessionsPage from "../pages/SessionsPage/SessionsPage"; // Сеанси
 import FavoritesPage from "../pages/FavoritesPage/FavoritesPage"; // Обрані
 import LoginPage from "../pages/LoginPage/LoginPage"; // Вхід
 import RegisterPage from "../pages/RegisterPage/RegisterPage"; // Реєстрація
+import Profile from "../pages/profile/UserProfile";
 
 // Створення нових компонентів для адмінпанелі
 import AdminDashboard from "../pages/admin/AdminDashboardPage"; // Панель адміністратора
@@ -29,6 +30,7 @@ export default function AppRouter() {
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
 
       {/* Захищені маршрути для адміністратора */}

@@ -1,0 +1,71 @@
+/* Загальні стилі для профілю */
+.user-profile {
+  font-family: "Arial", sans-serif;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+p {
+  color: #555;
+  font-size: 1rem;
+}
+
+.profile-details h2,
+.profile-details h3 {
+  color: #333;
+}
+
+.profile-details ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.profile-details li {
+  font-size: 1rem;
+  color: #333;
+  margin: 5px 0;
+}
+
+.profile-details p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Стилі для кнопки виходу */
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
