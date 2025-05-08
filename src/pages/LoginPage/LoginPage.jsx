@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -16,10 +16,16 @@ export default function LoginPage() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token, navigate]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser(form)).then((res) => {
-      if (res.meta.requestStatus === "fulfilled") {
+      if (res.meta.requestStatus === "fulfilled" && res.payload?.token) {
         navigate("/");
       }
     });
