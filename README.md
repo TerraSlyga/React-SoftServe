@@ -1,12 +1,119 @@
-# React + Vite
+# 🎬 Кіноафіша - Платформа бронювання квитків у кіно
+![image](https://github.com/user-attachments/assets/ba7eff2e-4575-4982-bd1d-1c7d3818796b)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📋 Огляд
 
-Currently, two official plugins are available:
+**Кіноафіша** — це веб-застосунок для перегляду фільмів, розкладу сеансів та бронювання квитків у кінотеатрах.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔧 Розроблений на базі **React**, з **темним інтерфейсом**, цей сайт пропонує українським кіноманам інтуїтивно зрозумілий спосіб знайти фільми та спланувати похід у кінотеатр.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Функціонал
+
+- 🎞️ **Перегляд фільмів**: фільми, що зараз у прокаті, та анонси
+- 📖 **Детальна інформація про фільми**: описи, трейлери, рейтинги, акторський склад та скріншоти
+- 👤 **Особистий кабінет**: реєстрація, вхід та управління профілем користувача
+- ❤️ **Обрані фільми**: можливість додавати фільми до списку улюблених
+- 🔍 **Пошук**: швидкий пошук фільмів за назвою
+- 🕒 **Перегляд сеансів**: інформація про розклад сеансів
+- 🎟️ **Бронювання квитків**: можливість придбати квитки онлайн
+
+## 🛠 Технології
+
+| Категорія               | Технології                         |
+|-------------------------|------------------------------------|
+| 🌐 **Frontend**         | React, React Router, Redux Toolkit, React Select      |
+| 🎨 **Стилізація**       | CSS Modules                        |
+| ⚙️ **Збірка**           | Vite                               |
+| 💻 **Мова програмування** | JavaScript                        |
+| 📊 **Сховища даних** | MySQL                  |
+| 🔗 **API**              | Java Spring Boot |
+| 🛠 **Інструменти**             | Git, Scrum методологія |
+
+---
+
+## 🚀 Встановлення та запуск
+
+### 🧩 Передумови
+
+- Node.js (версія 14.x або вище)
+- npm
+
+### 🛠️ Кроки для встановлення
+
+1. **Клонуйте репозиторій:**
+
+```bash
+git clone https://github.com/TerraSlyga/React-SoftServe.git
+cd React-SoftServe
+```
+
+2. **Встановіть залежності:**
+
+```bash
+npm install
+```
+
+3. **Запустіть проєкт у режимі розробки:**
+
+```bash
+npm run dev
+```
+
+4. **Відкрийте http://localhost:5173 у браузері**
+
+## 📁 Структура проєкту
+
+```bash
+React-SoftServe/
+├── public/             # Статичні файли (іконки)
+│   ├── vite.avg
+├── src/                # Вихідний код
+│   ├── assets/         # Медіафайли (зображення, SVG)
+│   ├── components/     # UI-компоненти (Footer, Header, MovieCard, etc.)
+│   ├── layouts/        # # Макети сторінок
+│   ├── mocks/          # Mock-дані
+│   ├── pages/          # Сторінки додатка (Home, Profile, Dashboard)
+│   ├── routes/         # Маршрутизація
+│   ├── services/       # API-сервіси (authService, apiClient)
+│   ├── store/          # Redux (slices, actions, reducers)
+│   ├── style/          # Глобальні стилі (variables, mixins)
+│   ├── App.jsx         # Головний компонент
+│   ├── App.css         # Стилі для головного компоненту
+│   ├── index.css       # Базові стилі
+│   └── main.jsx        # Точка входу
+├── eslintrc.js         # Налаштування ESLint
+├── index.html          # Налаштування ESLint
+├── package.json        # Залежності та скрипти
+└── vite.config.js      # Конфігурація Vite
+```
+
+## 🎬 Основні сторінки додатку
+
+| Сторінка               | Опис                                                                 |
+|------------------------|---------------------------------------------------------------------|
+| **Головна**           | Список фільмів у прокаті з можливістю сортування та фільтрації      |
+| **Детальна інформація** | Повна інформація про фільм: опис, трейлер, акторський склад, сеанси |
+| **Пошук**             | Пошук фільмів за назвою, жанром або актором                        |
+| **Сеанси**            | Розклад сеансів у кінотеатрі з фільтрацією за датою                |
+| **Обрані**            | Список фільмів, доданих користувачем до обраного                   |
+| **Вхід**              | Автентифікація користувача                                         |
+| **Реєстрація**        | Створення нового облікового запису                                 |
+| **Профіль**           | Особистий кабінет користувача з історією переглядів                |
+
+---
+
+## 👥 Команда розробників
+
+Наш талановитий колектив:
+
+- **Бондарєв Іван**
+- **Василенко Анна**
+- **Зуєва Євгенія**
+- **Медвідь Дмитро**
+- **Крупський Олександр**
+- **Самонов Михайло**
+
+## 📄 Ліцензія
+© 2025 Кіноафіша. Усі права захищені.
