@@ -3,7 +3,7 @@ import {
   getTotalStatistics,
   getMovieStatistics,
   getStatisticsByPeriod,
-} from "../../services/statisticsService";
+} from "../../../services/statisticsService";
 
 export default function StatisticsPage() {
   const [totalStats, setTotalStats] = useState(null);
