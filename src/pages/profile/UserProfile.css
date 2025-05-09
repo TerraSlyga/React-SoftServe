@@ -1,71 +1,115 @@
-/* Загальні стилі для профілю */
-.user-profile {
-  font-family: "Arial", sans-serif;
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: #f4f4f4;
+.user-profile-container {
+  background-color: #121212;
+  min-height: calc(100vh - 140px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  box-sizing: border-box;
+  color: white;
+}
+
+.user-profile-content {
+  width: 100%;
+  max-width: 500px;
+}
+
+.user-profile-card {
+  background-color: #1a1a1a;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.profile-header {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 2.5rem;
   text-align: center;
-  margin-bottom: 20px;
 }
 
-.avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 15px;
-}
-
-h1 {
+.user-name {
   font-size: 2rem;
-  margin: 10px 0;
+  color: white;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
 }
 
-p {
-  color: #555;
+.user-email {
   font-size: 1rem;
+  color: #cccccc;
+  margin: 0 0 2rem 0;
 }
 
-.profile-details h2,
-.profile-details h3 {
-  color: #333;
-}
-
-.profile-details ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-.profile-details li {
-  font-size: 1rem;
-  color: #333;
-  margin: 5px 0;
-}
-
-.profile-details p {
-  font-size: 1.1rem;
-  color: #666;
-}
-
-/* Стилі для кнопки виходу */
 .logout-button {
-  background-color: #f44336;
+  background-color: #ff0000;
   color: white;
   border: none;
-  padding: 10px 20px;
+  border-radius: 4px;
+  padding: 0.75rem 0;
   font-size: 1rem;
   cursor: pointer;
-  border-radius: 5px;
   width: 100%;
-  margin-top: 20px;
+  transition: background-color 0.3s;
+  font-weight: 500;
 }
 
 .logout-button:hover {
-  background-color: #d32f2f;
+  background-color: #cc0000;
+}
+
+.user-profile-not-logged {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.user-profile-not-logged h2 {
+  color: white;
+  margin-top: 0;
+}
+
+.login-button {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 500;
+}
+
+.login-button:hover {
+  background-color: #c00812;
+}
+
+/* Адаптивний дизайн */
+@media (max-width: 768px) {
+  .user-profile-container {
+    padding: 2rem 1rem;
+  }
+
+  .user-profile-card {
+    padding: 2rem;
+  }
+
+  .user-name {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-profile-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .user-profile-card {
+    padding: 1.5rem;
+  }
+
+  .user-name {
+    font-size: 1.5rem;
+  }
+
+  .user-email {
+    margin-bottom: 1.5rem;
+  }
 }

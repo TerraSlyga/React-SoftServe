@@ -1,12 +1,10 @@
-import React from "react";
+"use client";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../store/authSlice"; // Імпорт вашого action
+import { logout } from "../../store/authSlice";
 import { useNavigate } from "react-router-dom";
-import "./UserProfile.css"; // Імпортуємо CSS файл для стилів
+import "./UserProfile.css";
 
 const UserProfile = () => {
-  // Статичні дані користувача
-
   // Використовуємо useSelector для отримання інформації про автентифікацію
   const { isLoggedIn, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -14,32 +12,39 @@ const UserProfile = () => {
 
   // Функція для виходу з акаунту
   const handleLogout = () => {
-    dispatch(logout()); // Викликаємо logout action з Redux
-    localStorage.removeItem("token"); // Видаляємо токен з localStorage
-    navigate("/login"); // Перенаправлення на сторінку входу
+    dispatch(logout());
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
   // Якщо користувач не увійшов
   if (!isLoggedIn) {
     return (
-      <div className="user-profile">
-        <h2>Ви вийшли з акаунту.</h2>
-        <button onClick={() => navigate("/login")}>Увійти</button>
+      <div className="user-profile-container">
+        <div className="user-profile-not-logged">
+          <h2>Ви не увійшли в акаунт</h2>
+          <button className="login-button" onClick={() => navigate("/login")}>
+            Увійти
+          </button>
+        </div>
       </div>
     );
   }
 
-  // Якщо користувач увійшов
-  return (
-    <div className="user-profile">
-      <div className="profile-header">
-        <h1>{user.username}</h1>
-        <p>{user.email}</p>
-      </div>
+  // Використовуємо дані користувача з Redux
+  const userData = user;
 
-      <button className="logout-button" onClick={handleLogout}>
-        Вийти з акаунту
-      </button>
+  return (
+    <div className="user-profile-container">
+      <div className="user-profile-content">
+        <div className="user-profile-card">
+          <h1 className="user-name">{userData.username}</h1>
+          <p className="user-email">{userData.email}</p>
+          <button className="logout-button" onClick={handleLogout}>
+            Вийти з акаунту
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
