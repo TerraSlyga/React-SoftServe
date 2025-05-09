@@ -115,6 +115,69 @@ const movieService = {
       throw new Error("Не вдалося видалити фільм з обраних");
     }
   },
+  /**
+   * Отримати жанри фільмів
+   * @returns {Promise<Array>} Масив жанрів
+   */
+  async getAllGenres() {
+    try {
+      const response = await axios.get(`${BASE_URL}/movies/genres`); // Заміни на реальний endpoint
+      return response.data;
+    } catch (error) {
+      console.error("Помилка при завантаженні жанрів:", error);
+      throw new Error("Не вдалося отримати жанри");
+    }
+  },
+  /**
+   * Отримати список акторів з API
+   * @returns {Promise<Array>} Масив акторів
+   */
+  async getAllActors() {
+    try {
+      const response = await axios.get(`${BASE_URL}/movies/actors`); // Заміни на реальний endpoint
+      return response.data;
+    } catch (error) {
+      console.error("Помилка при завантаженні акторів:", error);
+      throw new Error("Не вдалося отримати акторів");
+    }
+  },
+  /**
+   * Створити фільм
+   */
+  async createMovie(data) {
+    try {
+      const response = await axios.post(`${BASE_URL}/movies`, data);
+      return response.data;
+    } catch (error) {
+      console.error("Помилка при створенні фільму:", error);
+      throw new Error("Не вдалося створити фільм");
+    }
+  },
+
+  /**
+   * Оновити фільм
+   */
+  async updateMovie(id, data) {
+    try {
+      const response = await axios.put(`${BASE_URL}/movies/${id}`, data);
+      return response.data;
+    } catch (error) {
+      console.error("Помилка при оновленні фільму:", error);
+      throw new Error("Не вдалося оновити фільм");
+    }
+  },
+
+  /**
+   * Видалити фільм
+   */
+  async deleteMovie(id) {
+    try {
+      await axios.delete(`${BASE_URL}/movies/${id}`);
+    } catch (error) {
+      console.error("Помилка при видаленні фільму:", error);
+      throw new Error("Не вдалося видалити фільм");
+    }
+  },
 };
 
 export default movieService;
