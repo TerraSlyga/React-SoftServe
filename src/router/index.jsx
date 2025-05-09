@@ -10,13 +10,13 @@ import RegisterPage from "../pages/RegisterPage/RegisterPage"; // Реєстра
 import Profile from "../pages/profile/UserProfile";
 
 // Створення нових компонентів для адмінпанелі
-import AdminDashboard from "../pages/admin/AdminDashboardPage"; // Панель адміністратора
-import MoviesPage from "../pages/admin/ManageMoviesPage"; // Управління фільмами
-import StatisticsPage from "../pages/admin/StatisticsPage"; // Статистика
-import SessionsAdminPage from "../pages/admin/SessionsAdminPage"; // Управління сеансами
+import AdminDashboard from "../pages/admin/AdminDashboardPage/AdminDashboardPage"; // Панель адміністратора
+import MoviesPage from "../pages/admin/ManageMoviesPage/ManageMoviesPage"; // Управління фільмами
+import StatisticsPage from "../pages/admin/StatisticsPage/StatisticsPage"; // Статистика
+import SessionsAdminPage from "../pages/admin/SessionsAdminPage/SessionsAdminPage"; // Управління сеансами
 
 // Захист адмін-маршрутів
-import AdminRoute from "../router/AdminRoute"; // Захищена адмін-сторінка
+import AdminRoute from "./AdminRoute"; // Захищена адмін-сторінка
 
 export default function AppRouter() {
   return (
@@ -34,11 +34,11 @@ export default function AppRouter() {
       </Route>
 
       {/* Захищені маршрути для адміністратора */}
-      <Route element={<AdminRoute />}>
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/movies" element={<MoviesPage />} />
-        <Route path="/admin/statistics" element={<StatisticsPage />} />
-        <Route path="/admin/sessions" element={<SessionsAdminPage />} />
+      <Route path="/admin" element={<AdminRoute />}>
+        <Route index element={<AdminDashboard />} />
+        <Route path="movies" element={<MoviesPage />} />
+        <Route path="statistics" element={<StatisticsPage />} />
+        <Route path="sessions" element={<SessionsAdminPage />} />
       </Route>
     </Routes>
   );
