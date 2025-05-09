@@ -1,17 +1,15 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+import MainLayout from "../layouts/MainLayout/MainLayout";
 
-// Компонент для захисту адмін-сторінок
-const AdminRoute = ({ children }) => {
+const AdminRoute = () => {
   const { user } = useSelector((state) => state.auth);
 
-  // Якщо користувач не авторизований або не є адміністратором, редирект на сторінку входу
   if (!user || user.role !== "admin") {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
 
-  return children; // Якщо користувач адміністратор, рендеримо дочірні компоненти (адмін-сторінки)
+  return <MainLayout />;
 };
 
 export default AdminRoute;
