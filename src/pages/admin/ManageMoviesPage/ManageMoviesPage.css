@@ -1,0 +1,119 @@
+/* Загальні стилі */
+
+h3 {
+  margin-top: 0;
+}
+
+/* Контейнери */
+.movie-manager,
+.genres-manager,
+.actors-manager,
+.screenshots-manager {
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px;
+}
+
+/* Кнопки */
+button {
+  background-color: #e50914;
+  border: none;
+  color: #fff;
+  padding: 6px 12px;
+  margin-top: 10px;
+  margin-left: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #b3030c;
+}
+
+/* Поля вводу */
+input[type="text"],
+select {
+  padding: 6px;
+  margin-top: 10px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 220px;
+}
+
+/* Повідомлення */
+.error {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+}
+
+/* Рядки жанрів і акторів */
+.genre-row,
+.actor-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.actor-row select,
+.genre-row select {
+  flex-grow: 1;
+}
+
+/* Адаптивність */
+@media (max-width: 600px) {
+  .genre-row,
+  .actor-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  input[type="text"],
+  select {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.actors-manager .react-select__control,
+.genres-manager .react-select__control {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+.actors-manager .react-select__menu,
+.genres-manager .react-select__menu {
+  background-color: white;
+  color: black;
+  z-index: 100;
+}
+
+.actors-manager .react-select__option,
+.genres-manager .react-select__option {
+  color: black;
+}
+
+.actors-manager .react-select__multi-value__label,
+.genres-manager .react-select__multi-value__label {
+  color: black;
+}
+
+.actors-manager .react-select__placeholder,
+.genres-manager .react-select__placeholder {
+  color: black;
+}
