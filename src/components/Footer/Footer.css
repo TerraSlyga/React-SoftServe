@@ -19,6 +19,7 @@
 
 .footer__logo {
   display: flex;
+  align-items: center;
   text-decoration: none;
 
 }
@@ -26,6 +27,7 @@
 .footer__title {
   color: #ccc;
   padding-left: 1rem;
+  margin: 0;
 }
 
 .footer__text {
