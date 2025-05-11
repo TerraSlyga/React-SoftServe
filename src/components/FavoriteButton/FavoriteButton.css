@@ -6,9 +6,9 @@
   background-color: transparent;
   color: white;
   border: 2px solid #e50914;
-  border-radius: 4px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
+  border-radius: 5px;
+  padding: 9.5px 14px;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -56,11 +56,6 @@
 
 /* Додаємо адаптивність для різних розмірів екрану */
 @media (max-width: 1024px) {
-  .favorite-button {
-    padding: 0.7rem 1.25rem;
-    font-size: 0.95rem;
-  }
-
   .favorite-icon {
     width: 1.2rem;
     height: 1.2rem;
@@ -70,14 +65,5 @@
 @media (max-width: 768px) {
   .favorite-text {
     display: none;
-  }
-
-  .favorite-button {
-    padding: 0.75rem;
-  }
-
-  .favorite-icon {
-    width: 1.5rem;
-    height: 1.5rem;
   }
 }
