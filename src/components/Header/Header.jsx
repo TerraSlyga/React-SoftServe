@@ -67,11 +67,14 @@ export default function Header() {
                   Сеанси
                 </Link>
               </li>
-              <li className="header__item">
-                <Link to="/favorites" className="header__link">
-                  Обрані
-                </Link>
-              </li>
+              {isLoggedIn && (
+                <li className="header__item">
+                  <Link to="/favorites" className="header__link">
+                    Обрані
+                  </Link>
+                </li>
+              )}
+
               {isLoggedIn && user.role === "admin" && (
                 <li className="header__item">
                   <Link to="/admin" className="header__link">
@@ -126,11 +129,13 @@ export default function Header() {
                 Сеанси
               </Link>
             </li>
-            <li className="header__item">
-              <Link to="/favorites" className="header__link">
-                Обрані
-              </Link>
-            </li>
+            {isLoggedIn && (
+              <li className="header__item">
+                <Link to="/favorites" className="header__link">
+                  Обрані
+                </Link>
+              </li>
+            )}
             {isLoggedIn && user.role === "admin" && (
               <li className="header__item">
                 <Link to="/admin" className="header__link">
