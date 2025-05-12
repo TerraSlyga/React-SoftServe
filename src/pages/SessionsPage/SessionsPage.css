@@ -1,28 +1,261 @@
+.sessionpage__section {
+  padding: 4rem 0;
+}
+
 .sessions-page {
-  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
 }
 
-.filters {
+.sessions-page__title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.sessions-page__container {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
+  background-color: #2c2c2c;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 40px;
 }
 
-.filters input {
-  padding: 0.5rem;
-  font-size: 1rem;
+.sessions-page__poster-section {
+  background-color: #242424;
+  width: 300px;
+  padding: 20px;
+  border-right: 1px solid #3c3c3c;
 }
 
-.sessions-list {
+.sessions-page__poster img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.sessions-page__title-text {
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  margin: 10px 0 10px;
+}
+
+.sessions-page__rating {
+  text-align: center;
+  color: #f5d400;
+  margin-bottom: 20px;
+}
+
+.sessions-page__button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.sessions-page__grid {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.sessions-page__date-headers {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.sessions-page__date-header {
+  background-color: #3c3c3c;
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.sessions-page__time-price-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.sessions-page__time-price-cell {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  padding: 10px;
+  background-color: #242424;
+  border: 1px solid #3c3c3c;
+  border-radius: 5px;
 }
 
-.session-card {
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fafafa;
+.sessions-page__session-time {
+  margin-bottom: 5px;
+}
+
+.sessions-page__session-price {
+  color: #b0b0b0;
+}
+
+.sessions-page__buy-button,
+.sessions-page__details-button {
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.sessions-page__details-button {
+  background-color: #3c3c3c;
+  width: 200px;
+}
+
+.sessions-page__buy-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.sessions-page__buy-button:hover {
+  background-color: #cc0000;
+}
+
+.sessions-page__details-button:hover {
+  background-color: #4c4c4c;
+}
+
+/* Приховуємо мобільну сітку на десктопах */
+.sessions-page__mobile-grid {
+  display: none;
+}
+
+/* Адаптація для планшетів */
+@media (max-width: 992px) {
+  .sessionpage__section {
+    padding: 3rem 0;
+  }
+
+  .sessions-page__container {
+    flex-direction: column;
+  }
+
+  .sessions-page__poster-section {
+    width: 100%;
+    border-right: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sessions-page__poster {
+    width: 250px;
+    margin-right: 20px;
+  }
+}
+
+/* Адаптація для мобільних пристроїв */
+@media (max-width: 576px) {
+  .sessionpage__section {
+    padding: 2rem 0;
+  }
+
+  .sessions-page__title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sessions-page__poster-section {
+    padding: 15px;
+  }
+
+  .sessions-page__poster {
+    width: 200px;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .sessions-page__title-text {
+    font-size: 20px;
+  }
+
+  .sessions-page__grid {
+    padding: 15px;
+  }
+
+  /* Приховуємо десктопну сітку на мобільних */
+  .sessions-page__desktop-grid {
+    display: none;
+  }
+
+  /* Показуємо мобільну сітку */
+  .sessions-page__mobile-grid {
+    display: block;
+  }
+
+  /* Стилі для відображення дат у мобільній версії */
+  .sessions-page__date-headers {
+    flex-direction: column;
+  }
+
+  .sessions-page__date-header {
+    margin-bottom: 5px;
+    padding: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+  }
+
+  .sessions-page__date-header:after {
+    content: "+";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .sessions-page__date-header.active {
+    background-color: #4a4a4a;
+  }
+
+  .sessions-page__date-header.active:after {
+    content: "-";
+  }
+
+  /* Приховуємо всі блоки сеансів за замовчуванням */
+  .sessions-page__mobile-date-sessions {
+    display: none;
+    margin-bottom: 15px;
+  }
+
+  /* Показуємо блок сеансів для активної дати */
+  .sessions-page__mobile-date-sessions.active {
+    display: block;
+    padding: 5px;
+    background-color: rgba(60, 60, 60, 0.3);
+    border-radius: 5px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+  }
+
+  /* Стилі для мобільних елементів сеансів */
+  .sessions-page__time-price-cell.mobile {
+    margin-bottom: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .sessions-page__time-price-cell.mobile .sessions-page__session-time {
+    margin-bottom: 0;
+    font-weight: bold;
+  }
+
+  .sessions-page__details-button {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
