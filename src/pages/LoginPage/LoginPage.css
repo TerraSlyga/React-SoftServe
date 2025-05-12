@@ -1,10 +1,21 @@
 .login-page {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #fafafa;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 2.5rem;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.login-page h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 0;
+  padding: 0 1rem;
+  font-size: 2rem;
+  color: white;
+  font-weight: 600;
 }
 
 .login-form {
@@ -14,11 +25,90 @@
 }
 
 .login-form input {
-  padding: 0.5rem;
+  padding: 0.75rem 1rem;
   font-size: 1rem;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #2a2a2a;
+  color: white;
+  transition: border-color 0.3s;
 }
 
-.login-form .error {
-  color: red;
+.login-form input::placeholder {
+  color: #999;
+}
+
+.login-form input:focus {
+  border-color: #ff0000;
+  outline: none;
+}
+
+.login-form button {
+  padding: 0.75rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 500;
+}
+
+.login-form button:hover:not(:disabled) {
+  background-color: #cc0000;
+}
+
+.login-form button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.error {
+  color: #ff6b6b;
+  text-align: center;
   font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Адаптивний дизайн */
+@media (max-width: 768px) {
+  .login-page {
+    margin: 30px 20px;
+    padding: 2rem;
+    max-width: calc(100% - 40px);
+  }
+
+  .login-page h1 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-page {
+    margin: 20px 16px;
+    padding: 1.5rem;
+    max-width: calc(100% - 32px);
+  }
+
+  .login-page h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .login-form input,
+  .login-form button {
+    padding: 0.6rem;
+  }
+}
+
+/* Додаємо ще один брейкпоінт для дуже малих екранів */
+@media (max-width: 360px) {
+  .login-page {
+    margin: 15px 12px;
+    padding: 1.25rem;
+    max-width: calc(100% - 24px);
+  }
 }
