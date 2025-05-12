@@ -12,6 +12,7 @@ import BuyTicketButton from "../../components/BuyTicketButton/BuyTicketButton";
 import FavoriteButton from "../../components/FavoriteButton/FavoriteButton";
 import { mockMovie } from "../../mocks/movieMock"; // Імпортуємо мок-дані
 import "./MovieDetailsPage.css";
+import { useSelector } from "react-redux";
 
 // Тимчасовий прапорець для використання мок-даних
 const USE_MOCK_DATA = false;
@@ -21,6 +22,7 @@ export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const handleResize = () => {
@@ -75,10 +77,11 @@ export default function MovieDetailsPage() {
 
           <MovieInfo movie={movie} />
 
-          <div className="movie-actions">
-            <FavoriteButton movieId={movie.id} />
-          </div>
-
+          {isLoggedIn && (
+            <div className="movie-actions">
+              <FavoriteButton movieId={movie.id} />
+            </div>
+          )}
           <div className="movie-details-sections">
             {isMobile ? (
               // Мобільний порядок: трейлер і скріншоти, потім актори
