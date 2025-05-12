@@ -3,86 +3,20 @@ import { Link } from "react-router-dom";
 import "./FavoritesPage.css";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import RemoveFromFavoritesWrapper from "../../components/RemoveFromFavoritesWrapper/RemoveFromFavoritesWrapper";
+import movieService from "../../services/movieService"; // для API
+import { useSelector } from "react-redux";
 
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    // Тимчасові дані з двома фільмами
-    const demoFavorites = [
-      {
-        id: "1",
-        title: "Minecraft: Фільм",
-        year: "2025",
-        genre: "Пригоди, Фентезі, Комедія, Сімейний",
-        director: "Джаред Гесс",
-        rating: "8.5",
-        description:
-          "Четверо недавніх знайомців опиняються у чарівному кубічному світі, де все має кутову форму. Це місце називається Верхній світ і своїх їх затягло через таємний портал. Гаррет (Джейсон Момоа), Генрі (Джек Блек), Наташа (Дженніфер Куліджі) та Кеті (Даніель Брукс) нічого про покращення форму, але Норм (Джейсон Момоа) нічого не стається. Їм доводиться опанувати місцеві правила існування.",
-        poster:
-          "https://cdn.planetakino.ua/4612_minecraft_2025/Media/Posters/vertical/52d15a99-deab-48c6-9512-8af553e41a5b.jpg",
-        trailerId: "8B1EtVPBSMw", // ID відео з YouTube
-        language: "українська",
-        duration: "103",
-        ageRating: "0+",
-      },
-      {
-        id: "2",
-        title: "Minecraft: Фільм",
-        year: "2025",
-        genre: "Пригоди, Фентезі, Комедія, Сімейний",
-        director: "Джаред Гесс",
-        rating: "8.5",
-        description:
-          "Четверо недавніх знайомців опиняються у чарівному кубічному світі, де все має кутову форму. Це місце називається Верхній світ і своїх їх затягло через таємний портал. Гаррет (Джейсон Момоа), Генрі (Джек Блек), Наташа (Дженніфер Куліджі) та Кеті (Даніель Брукс) нічого про покращення форму, але Норм (Джейсон Момоа) нічого не стається. Їм доводиться опанувати місцеві правила існування.",
-        poster:
-          "https://cdn.planetakino.ua/4612_minecraft_2025/Media/Posters/vertical/52d15a99-deab-48c6-9512-8af553e41a5b.jpg",
-        trailerId: "8B1EtVPBSMw", // ID відео з YouTube
-        language: "українська",
-        duration: "103",
-        ageRating: "0+",
-      },
-      {
-        id: "3",
-        title: "Minecraft: Фільм",
-        year: "2025",
-        genre: "Пригоди, Фентезі, Комедія, Сімейний",
-        director: "Джаред Гесс",
-        rating: "8.5",
-        description:
-          "Четверо недавніх знайомців опиняються у чарівному кубічному світі, де все має кутову форму. Це місце називається Верхній світ і своїх їх затягло через таємний портал. Гаррет (Джейсон Момоа), Генрі (Джек Блек), Наташа (Дженніфер Куліджі) та Кеті (Даніель Брукс) нічого про покращення форму, але Норм (Джейсон Момоа) нічого не стається. Їм доводиться опанувати місцеві правила існування.",
-        poster:
-          "https://cdn.planetakino.ua/4612_minecraft_2025/Media/Posters/vertical/52d15a99-deab-48c6-9512-8af553e41a5b.jpg",
-        trailerId: "8B1EtVPBSMw", // ID відео з YouTube
-        language: "українська",
-        duration: "103",
-        ageRating: "0+",
-      },
-      {
-        id: "4",
-        title: "Minecraft: Фільм",
-        year: "2025",
-        genre: "Пригоди, Фентезі, Комедія, Сімейний",
-        director: "Джаред Гесс",
-        rating: "8.5",
-        description:
-          "Четверо недавніх знайомців опиняються у чарівному кубічному світі, де все має кутову форму. Це місце називається Верхній світ і своїх їх затягло через таємний портал. Гаррет (Джейсон Момоа), Генрі (Джек Блек), Наташа (Дженніфер Куліджі) та Кеті (Даніель Брукс) нічого про покращення форму, але Норм (Джейсон Момоа) нічого не стається. Їм доводиться опанувати місцеві правила існування.",
-        poster:
-          "https://cdn.planetakino.ua/4612_minecraft_2025/Media/Posters/vertical/52d15a99-deab-48c6-9512-8af553e41a5b.jpg",
-        trailerId: "8B1EtVPBSMw", // ID відео з YouTube
-        language: "українська",
-        duration: "103",
-        ageRating: "0+",
-      },
-    ];
-
-    setFavorites(demoFavorites);
+    movieService.getFavorites(user.id).then(setFavorites);
   }, []);
 
   const removeFromFavorites = (id) => {
     const updatedFavorites = favorites.filter((movie) => movie.id !== id);
     setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
   return (

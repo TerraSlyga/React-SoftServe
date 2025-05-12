@@ -1,4 +1,3 @@
-import React from 'react';
 import FavoriteButton from "../../components/FavoriteButton/FavoriteButton";
 
 const RemoveFromFavoritesWrapper = ({ movieId, onRemove }) => {
@@ -7,7 +6,7 @@ const RemoveFromFavoritesWrapper = ({ movieId, onRemove }) => {
   };
 
   return (
-    <a onClick={handleClick} style={{ cursor: 'pointer' }}>
+    <a onClick={handleClick} style={{ cursor: "pointer" }}>
       <FavoriteButton movieId={movieId} initialIsFavorite={true} />
     </a>
   );

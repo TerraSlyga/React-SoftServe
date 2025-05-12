@@ -1,28 +1,52 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import "./FavoriteButton.css";
+import movieService from "../../services/movieService";
 
 const FavoriteButton = ({ movieId, initialIsFavorite = false }) => {
   const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
   const [isLoading, setIsLoading] = useState(false);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
+
+  // Отримання статусу обраного при завантаженні компонента
+  useEffect(() => {
+    const fetchFavoriteStatus = async () => {
+      if (!isLoggedIn || !user) return;
+
+      try {
+        setIsLoading(true);
+        const status = await movieService.isFavorite(user.id, movieId);
+        setIsFavorite(status); // Оновлюємо статус
+      } catch (error) {
+        console.error("Не вдалося завантажити статус обраного:", error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchFavoriteStatus();
+  }, [isLoggedIn, user, movieId]);
 
   const toggleFavorite = async () => {
+    if (!isLoggedIn || !user) {
+      console.warn("Користувач не авторизований");
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      // Тут буде реальний API-запит, коли бекенд буде готовий
-      // Наразі просто імітуємо запит з затримкою
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      if (isFavorite) {
+        await movieService.removeFromFavorites(user.id, movieId);
+      } else {
+        await movieService.addToFavorites(user.id, movieId);
+      }
 
-      setIsFavorite(!isFavorite);
-
-      // Виводимо повідомлення в консоль для демонстрації
-      console.log(
-        `Фільм ${movieId} ${!isFavorite ? "додано до" : "видалено з"} обраних`
-      );
+      setIsFavorite(!isFavorite); // Оновлюємо статус після успішного запиту
     } catch (error) {
-      console.error("Помилка при зміні статусу обраного:", error);
+      console.error("Помилка при зміні статусу обраного:", error.message);
     } finally {
       setIsLoading(false);
     }

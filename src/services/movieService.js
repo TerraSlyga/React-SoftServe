@@ -73,8 +73,7 @@ const movieService = {
   async addToFavorites(userId, movieId) {
     try {
       const response = await axios.post(
-        `${BASE_URL}/users/${userId}/favorites`,
-        { movieId }
+        `${BASE_URL}/users/${userId}/favorites/${movieId}`
       );
       return response.data;
     } catch (error) {
@@ -95,6 +94,27 @@ const movieService = {
     } catch (error) {
       console.error("Помилка при завантаженні обраних фільмів:", error);
       throw new Error("Не вдалося отримати обрані фільми");
+    }
+  },
+
+  /**
+   * Перевірити, чи фільм у списку обраних користувача.
+   * @param {string} userId Ідентифікатор користувача.
+   * @param {string} movieId Ідентифікатор фільму.
+   * @returns {Promise<boolean>} Статус — true або false.
+   */
+  async isFavorite(userId, movieId) {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/users/${userId}/favorites/${movieId}`
+      );
+      return response.data.isFavorite; // Очікуємо відповідь: { isFavorite: true }
+    } catch (error) {
+      if (error.response?.status === 404) {
+        return false; // Якщо запис не знайдено — не в обраних
+      }
+      console.error("Помилка при перевірці статусу обраного:", error);
+      throw new Error("Не вдалося перевірити статус обраного фільму");
     }
   },
 
@@ -121,7 +141,7 @@ const movieService = {
    */
   async getAllGenres() {
     try {
-      const response = await axios.get(`${BASE_URL}/movies/genres`); // Заміни на реальний endpoint
+      const response = await axios.get(`${BASE_URL}/movies/genres`);
       return response.data;
     } catch (error) {
       console.error("Помилка при завантаженні жанрів:", error);
@@ -134,7 +154,7 @@ const movieService = {
    */
   async getAllActors() {
     try {
-      const response = await axios.get(`${BASE_URL}/movies/actors`); // Заміни на реальний endpoint
+      const response = await axios.get(`${BASE_URL}/movies/actors`);
       return response.data;
     } catch (error) {
       console.error("Помилка при завантаженні акторів:", error);
