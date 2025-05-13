@@ -53,17 +53,13 @@ const movieService = {
    */
   async searchMovies(filters) {
     try {
-      const { genre, year, rating } = filters;
-      const response = await axios.get(`${BASE_URL}/movies/search`, {
-        params: { genre, year, rating },
-      });
+      const response = await axios.post(`${BASE_URL}/movies/search`, filters);
       return response.data;
     } catch (error) {
       console.error("Помилка при пошуку фільмів:", error);
       throw new Error("Не вдалося виконати пошук");
     }
   },
-
   /**
    * Додати фільм до обраних.
    * @param {string} userId Ідентифікатор користувача.
@@ -117,6 +113,7 @@ const movieService = {
       throw new Error("Не вдалося перевірити статус обраного фільму");
     }
   },
+
 
   /**
    * Видалити фільм з обраних.
