@@ -1,19 +1,70 @@
 .search-page {
-  padding: 2rem;
-  background-color: #f4f4f4;
+  padding: 4rem 0;
+}
+
+.search-page__wrapper {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.search-page h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.searchpage__title {
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  margin: 10px 0 10px;
+}
+
+.searchpage__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(350px, 1fr));
+  gap: 8rem;
+}
+
+.searchpage__grid-item {
+  background-color: #1e1e1e;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  height: 100%;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .search-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  max-width: 400px;
-  margin: 0 auto;
+  margin: 2rem 0 0 0;
+  padding: 2rem 0;
+  height: 550px;
+  width: 300px;
+  background-color: #1e1e1e;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 50px;
+  left: 50px;
 }
 
 .search-form .form-group {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .search-form label {
@@ -21,24 +72,35 @@
 }
 
 .search-form input {
-  padding: 0.5rem;
+  padding: 0.75rem 1rem !important;
   font-size: 1rem;
+  border: 1px solid #333 !important;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  background-color: #2a2a2a;
+  color: white;
+  transition: border-color 0.3s;
 }
 
 .search-form button {
-  padding: 0.75rem;
-  background-color: #e50914;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  background-color: transparent;
+}
+
+.form-group__img {
+  width: 25px;
+  height: 25px;
+}
+
+.search-button {
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  position: absolute;
+  top: 80px;
+  right: 50px;
 }
 
 .search-form button:hover {
-  background-color: #b40710;
+  background-color: transparent;
 }
 
 .error-message {
@@ -49,5 +111,119 @@
 }
 
 .search-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 2rem;
+}
+
+.genre-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.genre-tag {
+  width: auto;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #2b2b2b;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.genre-tag:hover {
+  background-color: #444;
+  border-color: #888;
+}
+
+.genre-tag.active {
+  background-color: #e50914;
+  border-color: #e50914;
+  color: #fff;
+}
+
+.year-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 8px;
+  gap: 70px;
+}
+
+.rc-slider {
+  width: 220px !important;
+}
+
+.rc-slider-handle {
+  background-color: #e50914 !important;
+  border: 2px solid #e50914 !important;
+  opacity: 1 !important;
+}
+
+.rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+  box-shadow: none !important;
+}
+
+.rc-slider-track,
+.rc-slider-tracks {
+  background-color: #fff !important;
+}
+
+.rc-slider-handle:active {
+  box-shadow: none !important;
+}
+
+.rc-slider-rail {
+  background-color: #e50914 !important;
+}
+
+@media (max-width: 1400px) {
+  .searchpage__grid {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 1150px) {
+  .searchpage__grid {
+    grid-template-columns: repeat(1, minmax(350px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .search-page__wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .search-form {
+    position: relative;
+    width: 350px;
+    padding: 2rem 1rem;
+    top: 0;
+    left: 0;
+  }
+  .search-button {
+    right: 75px;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchpage__grid {
+    grid-template-columns: repeat(1, minmax(250px, 1fr));
+  }
+  .search-form {
+    width: 250px;
+    padding: 2rem 1rem;
+  }
+  .search-button {
+    right: 30px;
+  }
+  .search-page h1 {
+    font-size: 2rem;
+  }
 }

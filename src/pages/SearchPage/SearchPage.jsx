@@ -1,39 +1,59 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import movieService from "../../services/movieService"; // Підключаємо movieService для запитів до API
+import movieService from "../../services/movieService";
 import "./SearchPage.css";
+import MovieCard from "../../components/MovieCard/MovieCard";
+import { Link } from "react-router-dom";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
 export default function SearchPage() {
-  const [query, setQuery] = useState({
-    title: "",
-    genre: "",
-    year: "",
-    rating: "",
-  });
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [genre, setGenre] = useState([]);
 
-  const navigate = useNavigate();
+  const [query, setQuery] = useState({
+    title: "",
+    genre: [],
+    yearRange: [1950, 2025],
+    ratingRange: [0, 10],
+  });
 
-  // Обробник для введення пошукового запиту
+  useEffect(() => {
+    movieService.getAll().then(setResults);
+    movieService.getAllGenres().then(setGenre);
+  }, []);
+
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setQuery((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    const { name, value, options } = e.target;
+
+    if (name === "genre") {
+      const selectedGenres = Array.from(options)
+        .filter((option) => option.selected)
+        .map((option) => option.value);
+
+      setQuery((prevState) => ({
+        ...prevState,
+        genre: selectedGenres,
+      }));
+    } else {
+      setQuery((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
-  // Обробник для виконання пошуку
   const handleSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
     try {
-      const data = await movieService.searchMovies(query);
-      setResults(data);
+      const filteredMovies = await movieService.searchMovies(query);
+      console.log(filteredMovies);
+      setResults(filteredMovies);
     } catch (err) {
       setError("Помилка при пошуку фільмів");
     } finally {
@@ -45,87 +65,124 @@ export default function SearchPage() {
     <div className="search-page">
       <h1>Пошук фільмів</h1>
 
-      {/* Форма пошуку */}
-      <form onSubmit={handleSearch} className="search-form">
-        <div className="form-group">
-          <label htmlFor="title">Назва фільму:</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={query.title}
-            onChange={handleInputChange}
-            placeholder="Назва фільму"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="genre">Жанр:</label>
-          <input
-            type="text"
-            id="genre"
-            name="genre"
-            value={query.genre}
-            onChange={handleInputChange}
-            placeholder="Жанр"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="year">Рік:</label>
-          <input
-            type="text"
-            id="year"
-            name="year"
-            value={query.year}
-            onChange={handleInputChange}
-            placeholder="Рік"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="rating">Рейтинг:</label>
-          <input
-            type="text"
-            id="rating"
-            name="rating"
-            value={query.rating}
-            onChange={handleInputChange}
-            placeholder="Рейтинг"
-          />
-        </div>
-
-        <button type="submit" disabled={loading}>
-          {loading ? "Шукаю..." : "Пошук"}
-        </button>
-      </form>
-
-      {/* Якщо є помилка */}
-      {error && <div className="error-message">{error}</div>}
-
-      {/* Якщо є результати пошуку */}
-      <div className="search-results">
-        {results.length > 0 ? (
-          <div className="movie-list">
-            {results.map((movie) => (
-              <div key={movie.id} className="movie-card">
-                <img
-                  src={movie.poster}
-                  alt={movie.title}
-                  className="movie-poster"
-                  onClick={() => navigate(`/movies/${movie.id}`)} // Перехід на сторінку фільму
-                />
-                <div className="movie-info">
-                  <h3>{movie.title}</h3>
-                  <p>{movie.year}</p>
-                  <p>Рейтинг: {movie.rating}</p>
-                </div>
-              </div>
-            ))}
+      <div className="search-page__wrapper">
+        <form onSubmit={handleSearch} className="search-form">
+          <div className="form-group__wrapper">
+            <div className="form-group">
+              <label htmlFor="title">Назва фільму:</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                value={query.title}
+                onChange={handleInputChange}
+                placeholder="Назва фільму"
+              />
+            </div>
           </div>
-        ) : (
-          <div>Фільми не знайдено</div>
-        )}
+
+          <div className="form-group">
+            <label className="searchpage__genre">Жанри:</label>
+            <div className="genre-tags">
+              {genre.map((g) => (
+                <button
+                  type="button"
+                  key={g.genre}
+                  className={`genre-tag ${
+                    query.genre.includes(g.genre) ? "active" : ""
+                  }`}
+                  onClick={() => {
+                    const alreadySelected = query.genre.includes(g.genre);
+                    setQuery((prevState) => ({
+                      ...prevState,
+                      genre: alreadySelected
+                        ? prevState.genre.filter((item) => item !== g.genre)
+                        : [...prevState.genre, g.genre],
+                    }));
+                  }}
+                >
+                  {g.genre}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* 🎯 Діапазон років */}
+          <div className="form-group">
+            <label>Оберіть рік:</label>
+            <div className="year-range-labels">
+              <span>{query.yearRange[0]}</span>
+              <span>{query.yearRange[1]}</span>
+            </div>
+            <Slider
+              range
+              min={1950}
+              max={2025}
+              step={1}
+              value={query.yearRange}
+              allowCross={false}
+              onChange={(value) =>
+                setQuery((prev) => ({
+                  ...prev,
+                  yearRange: value,
+                }))
+              }
+            />
+          </div>
+
+
+          {/* 🌟 Діапазон рейтингу */}
+          <div className="form-group">
+            <label>Оберіть рейтинг:</label>
+            <div className="year-range-labels">
+              <span>{query.ratingRange[0].toFixed(1)}</span>
+              <span>{query.ratingRange[1].toFixed(1)}</span>
+            </div>
+            <Slider
+              range
+              min={0}
+              max={10}
+              step={0.1}
+              value={query.ratingRange}
+              allowCross={false}
+              onChange={(value) =>
+                setQuery((prev) => ({
+                  ...prev,
+                  ratingRange: value,
+                }))
+              }
+            />
+          </div>
+
+          <button type="submit" className="search-button">
+            <img
+              src="src/assets/icons8.svg"
+              className="form-group__img"
+              alt="search"
+            />
+          </button>
+        </form>
+
+        <div className="search-results">
+          {results.length > 0 ? (
+            <div className="searchpage__grid">
+              {results.map((movie) => (
+                <div key={movie.id} className="searchpage__grid-item">
+                  <MovieCard movie={movie}>
+                    <Link
+                      to={`/movies/${movie.id}`}
+                      className="movie-card__button"
+                    >
+                      Детальніше
+                    </Link>
+                  </MovieCard>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div>Фільми не знайдено</div>
+          )}
+        </div>
       </div>
     </div>
   );
