@@ -46,7 +46,8 @@
 
 .movie-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: right;
+  gap: 1rem;
   margin: 1.5rem 0;
   width: 100%;
 }
@@ -123,5 +124,38 @@
 
   .movie-details-section {
     margin-bottom: 1.5rem;
+  }
+}
+
+.edit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: white;
+  border: 2px solid #ffcc00;
+  border-radius: 5px;
+  padding: 0px 14px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.edit-button:hover {
+  background-color: rgba(255, 165, 0, 0.1);
+  color: #ffcc00;
+  border-color: #ffcc00;
+}
+
+.edit-button:active {
+  background-color: rgba(255, 165, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .edit-button {
+    font-size: 1rem;
+    padding: 8px 12px;
   }
 }
