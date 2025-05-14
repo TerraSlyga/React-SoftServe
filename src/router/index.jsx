@@ -37,6 +37,7 @@ export default function AppRouter() {
       <Route path="/admin" element={<AdminRoute />}>
         <Route index element={<AdminDashboard />} />
         <Route path="movies" element={<MoviesPage />} />
+        <Route path="movies/:id" element={<MoviesPage />} />
         <Route path="statistics" element={<StatisticsPage />} />
         <Route path="sessions" element={<SessionsAdminPage />} />
       </Route>
