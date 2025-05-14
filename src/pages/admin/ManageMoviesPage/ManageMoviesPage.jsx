@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import movieService from "../../../services/movieService";
 import GenresManager from "./GenresManager";
 import ActorsManager from "./ActorsManager";
 import ScreenshotsManager from "./ScreenshotsManager";
 import "./ManageMoviesPage.css";
+import { useParams } from "react-router-dom";
 
 export default function ManageMoviesPage() {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const [form, setForm] = useState({
+    id: "",
     title: "",
     description: "",
     releaseDate: "",
@@ -23,6 +26,14 @@ export default function ManageMoviesPage() {
     actors: [],
     screenshots: [],
   });
+
+  useEffect(() => {
+    if (id) {
+      movieService.getMovieById(id).then((movie) => {
+        setForm(movie);
+      });
+    }
+  }, [id]);
 
   const [error, setError] = useState("");
 
@@ -47,12 +58,12 @@ export default function ManageMoviesPage() {
     };
 
     if (form.id) {
-      movieService.updateMovie(preparedForm);
+      movieService.updateMovie(form.id, preparedForm);
     } else {
       movieService.createMovie(preparedForm);
     }
 
-    navigate("/admin/movies");
+    navigate("/admin");
   };
 
   return (
@@ -143,6 +154,23 @@ export default function ManageMoviesPage() {
           <button type="submit">
             {form.id ? "Зберегти зміни" : "Додати фільм"}
           </button>
+          {form.id && (
+            <button
+              type="button"
+              className="delete-button"
+              onClick={() => {
+                if (
+                  window.confirm("Ви впевнені, що хочете видалити цей фільм?")
+                ) {
+                  movieService.deleteMovie(form.id).then(() => {
+                    navigate("/admin");
+                  });
+                }
+              }}
+            >
+              Видалити фільм
+            </button>
+          )}
         </div>
       </form>
     </div>

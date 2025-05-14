@@ -117,3 +117,16 @@ select {
 .genres-manager .react-select__placeholder {
   color: black;
 }
+
+.delete-button {
+  background-color: #c0392b;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #e74c3c;
+}
