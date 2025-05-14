@@ -137,12 +137,27 @@ export default function ManageMoviesPage() {
             setForm((prev) => ({ ...prev, screenshots }))
           }
         />
-        <div className="movie-manager">
+        <div className="movie-manager__btn">
           <h3>Додати фільм</h3>
           {error && <p className="error">{error}</p>}
           <button type="submit">
             {form.id ? "Зберегти зміни" : "Додати фільм"}
           </button>
+            <button
+              type="button"
+              className="delete-button"
+              onClick={() => {
+                if (
+                  window.confirm("Ви впевнені, що хочете видалити цей фільм?")
+                ) {
+                  movieService.deleteMovie(form.id).then(() => {
+                    navigate("/admin/movies");
+                  });
+                }
+              }}
+            >
+              Видалити фільм
+            </button>
         </div>
       </form>
     </div>
