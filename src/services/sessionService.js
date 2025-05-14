@@ -1,4 +1,4 @@
-const API_BASE = "/api/sessions";
+const API_BASE = "http://localhost:8080/api/sessions";
 
 const getAllSessions = async () => {
   const response = await fetch(`${API_BASE}`);
