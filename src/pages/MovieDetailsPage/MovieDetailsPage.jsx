@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import movieService from "../../services/movieService";
 import MovieHeader from "../../components/MovieHeader/MovieHeader";
@@ -22,7 +22,7 @@ export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { user, isLoggedIn } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const handleResize = () => {
@@ -77,11 +77,18 @@ export default function MovieDetailsPage() {
 
           <MovieInfo movie={movie} />
 
-          {isLoggedIn && (
-            <div className="movie-actions">
-              <FavoriteButton movieId={movie.id} />
-            </div>
-          )}
+          <div className="movie-actions">
+            {user.role === "admin" && (
+              <Link to={`/admin/movies/${movie.id}`} className="edit-button">
+                Редагувати фільм
+              </Link>
+            )}
+            {isLoggedIn && (
+              <div className="">
+                <FavoriteButton movieId={movie.id} />
+              </div>
+            )}
+          </div>
           <div className="movie-details-sections">
             {isMobile ? (
               // Мобільний порядок: трейлер і скріншоти, потім актори

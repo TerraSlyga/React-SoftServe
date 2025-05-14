@@ -146,6 +146,7 @@ export default function ManageMoviesPage() {
             <button
               type="button"
               className="delete-button"
+
               onClick={() => {
                 if (
                   window.confirm("Ви впевнені, що хочете видалити цей фільм?")
