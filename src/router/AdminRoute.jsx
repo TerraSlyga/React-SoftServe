@@ -5,9 +5,9 @@ import MainLayout from "../layouts/MainLayout/MainLayout";
 const AdminRoute = () => {
   const { user } = useSelector((state) => state.auth);
 
-  if (!user || user.role !== "admin") {
-    return <Navigate to="/login" replace />;
-  }
+  // if (!user || user.role !== "admin") {
+  //   return <Navigate to="/login" replace />;
+  // }
 
   return <MainLayout />;
 };

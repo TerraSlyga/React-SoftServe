@@ -1,17 +1,18 @@
 .admin-dashboard {
   max-width: 800px;
   margin: 40px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
+  padding: 2rem;
+  background-color: #1e1e1e;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .admin-dashboard h1 {
-  font-size: 28px;
-  margin-bottom: 24px;
-  color: #333;
+  font-size: 2.5rem;
+  margin: 0;
+  margin-bottom: 1rem;
+  color: #fff;
   text-align: center;
 }
 
@@ -23,15 +24,11 @@
 }
 
 .dashboard-options a {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #0077cc;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.dashboard-options a:hover {
-  background-color: #005fa3;
+    background: #e50914;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
 }
