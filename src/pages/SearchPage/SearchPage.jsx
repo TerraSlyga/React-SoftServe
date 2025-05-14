@@ -6,6 +6,7 @@ import MovieCard from "../../components/MovieCard/MovieCard";
 import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import findIcon from "/src/assets/icons8.svg";
 
 export default function SearchPage() {
   const [results, setResults] = useState([]);
@@ -130,7 +131,6 @@ export default function SearchPage() {
             />
           </div>
 
-
           {/* 🌟 Діапазон рейтингу */}
           <div className="form-group">
             <label>Оберіть рейтинг:</label>
@@ -155,11 +155,7 @@ export default function SearchPage() {
           </div>
 
           <button type="submit" className="search-button">
-            <img
-              src="src/assets/icons8.svg"
-              className="form-group__img"
-              alt="search"
-            />
+            <img src={findIcon} className="form-group__img" alt="search" />
           </button>
         </form>
 

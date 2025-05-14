@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Header.css"; // (опціонально) стилі
+import icon from "/src/assets/icon.svg";
 
 export default function Header() {
   const { isLoggedIn, user } = useSelector((state) => state.auth); // Отримуємо стан автентифікації
@@ -108,7 +109,7 @@ export default function Header() {
       </div>
       <div className="header__inner">
         <Link to="/" className="header__logo">
-          <img className="header__icon" src="src/assets/icon.svg" alt="icon" />
+          <img className="header__icon" src={icon} alt="icon" />
           <h1 className="header__title">Кіноафіша</h1>
         </Link>
 
